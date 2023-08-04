@@ -5,6 +5,8 @@ import pandas as pd
 import plotly as pt
 import numpy as np
 import plotly.express as px
+from bs4 import BeautifulSoup as bs
+import sys
 
 # extract weights and dates from records and populate list of lists
 
@@ -72,7 +74,7 @@ fig = px.line(
     labels={"date_measured": "Date Measured", "weight_in_lbs": "Weight (lbs)"},
 )
 
-fig.show()
+# fig.show()
 
 fig.write_image("weight-date.svg")
 fig.write_image("weight-date.png")
