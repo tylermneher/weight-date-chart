@@ -1,12 +1,11 @@
-# %%
 # imports to use
 
+import os
 import pandas as pd
 import plotly as pt
 import numpy as np
 import plotly.express as px
 
-# %%
 # extract weights and dates from records and populate list of lists
 
 weightdate = [
@@ -38,13 +37,11 @@ weightdate = [
 cols = ["data_src", "data_src_filename", "weight_in_lbs", "date_measured"]
 
 
-# %%
 # create pandas dataframe from weightdate data and cols columns
 
 weightdate_df = pd.DataFrame(data=weightdate, columns=cols)
-weightdate_df
+print(weightdate_df)
 
-# %%
 # cast 'date_measured' data as datetime
 # sort dataframe in-place by 'date_measured'
 
@@ -53,16 +50,14 @@ weightdate_df.sort_values(by="date_measured", ascending=False, inplace=True)
 weightdate_df["date_measured"]
 
 
-# %%
 # extract 'year', 'month', and 'day' data into respective columns from 'date_measured' col
 
 weightdate_df["year"] = weightdate_df["date_measured"].dt.year
 weightdate_df["month"] = weightdate_df["date_measured"].dt.month
 weightdate_df["day"] = weightdate_df["date_measured"].dt.day
 
-weightdate_df
+print(weightdate_df)
 
-# %%
 # Generate plotly.express linechart of weights over time
 
 names = {"Date Measured": "date_measured"}
@@ -76,4 +71,9 @@ fig = px.line(
     render_mode="svg",
     labels={"date_measured": "Date Measured", "weight_in_lbs": "Weight (lbs)"},
 )
+
 fig.show()
+
+fig.write_image("weight-date.svg")
+fig.write_image("weight-date.png")
+fig.write_html("index.html")
