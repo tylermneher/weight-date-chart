@@ -1,4 +1,4 @@
-# weight-date-chart
+# weight-date.tylermneher.me
 
 ## Tyler M. Neher 2024
 
